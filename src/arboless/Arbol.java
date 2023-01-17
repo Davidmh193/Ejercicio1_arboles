@@ -8,11 +8,6 @@ public class Arbol {
 	private int altura;
 	private String origen;
 	
-	
-	
-	
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -49,4 +44,7 @@ public class Arbol {
 	public void setOrigen(String origen) {
 		this.origen = origen;
 	}
+	
+	
+	
 }
