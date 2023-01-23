@@ -3,6 +3,7 @@ package arboless;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -47,9 +48,9 @@ public class GestorArboles {
 			String habitat;
 			int altura;
 			String origen;
-			String IDArbol;
+			int IDArbol;
 			
-			IDArbol= JOptionPane.showInputDialog(null, "Escribe la Id del arbol");
+			IDArbol=Integer.parseInt(JOptionPane.showInputDialog(null, "Escribe la Id del arbol"));
 			nombrecomun = JOptionPane.showInputDialog(null, "Escribe el nombre comundel arbol");
 			nombrecientifico = JOptionPane.showInputDialog(null, "Escribe el nombre cientifico del arbol");
 			habitat = JOptionPane.showInputDialog(null, "Escribe el habitat de el arbol");
@@ -74,17 +75,21 @@ public class GestorArboles {
             break;
 		case OPCION_TRES: //Modificar 
 			String OpcioanesCambios;
-			
+				id=Integer.parseInt(JOptionPane.showInputDialog(null, "Dime la id para modificar el arbol"));	
 			OpcioanesCambios =JOptionPane.showInputDialog(null, "----------------MODIFICAR-----------------\n ¿Que Informacion quieres modificar? \n 1. Nombre comun \n 2. Nombre cientifico \n 3. Habitat \n 4. Altura \n 6. Origen \n 7.Salir");
+		
+			
 		do {
 			
 			switch (OpcioanesCambios) {
 			case "1": //Cambio ID
-				
+				String sentenciaUpdate = "UPDATE arboles SET nombre='elefante' WHERE id = 2";
+				st.executeUpdate(sentenciaUpdate);
 				
 			break;
 			case "2": //Nombre comun
 				
+			
 				
 			break;
 			case "3": // Nombre cientifico
@@ -109,10 +114,16 @@ public class GestorArboles {
 			}
 			}while (OpcioanesCambios != "7");
 				
-		case OPCION_CUATRO:
-			JOptionPane.showMessageDialog(null, "tercera opcion seleccionada");
-			break;
+		case OPCION_CUATRO: 
 			
+			String sentenciaSelect = "SELECT * FROM arboles";
+			ResultSet resultado = st.executeQuery(sentenciaSelect);	
+			while(resultado.next()) {
+			System.out.println(resultado.getInt(1) + " - " + resultado.getString(2));
+			}
+			
+			
+		
 		case SALIR:
 			JOptionPane.showMessageDialog(null, "Saliendo...");
 			System.exit(0);
@@ -125,8 +136,3 @@ public class GestorArboles {
 	}
 	
 }
-
-
-
-
-
